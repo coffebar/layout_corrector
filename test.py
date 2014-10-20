@@ -9,7 +9,7 @@ __author__ = 'Odarchenko N.D.'
 if __name__ == '__main__':
     print('Keyboard layout corrector. \r\nTesting system environment...')
     commands = (
-        ("xclip -out -selection c > /dev/null", 'You need to install xclip'),
+        ("xsel --clear", 'You need to install xsel'),
         ('setxkbmap > /dev/null', 'You need to install setxkbmap'),
         ("xvkbd -xsendevent -text '\C'>/dev/null", 'You need to install xvkbd'),
     )

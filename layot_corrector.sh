@@ -2,7 +2,7 @@
 
 # REQUIRES:
 # python3
-# xclip
+# xsel
 # xvkbd
 # setxkbmap
 
@@ -24,7 +24,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 cd ${DIR}
 
 # saving old clipboard value to variable
-OLD_BUFFER="$(xclip -out -selection c)"
+OLD_BUFFER="$(xsel --clipboard)"
 
 # selecting left text with SHIFT + Home
 xvkbd -xsendevent -text "\S\[Home]"
@@ -33,14 +33,14 @@ xvkbd -xsendevent -text "\S\[Home]"
 xvkbd -xsendevent -text '\Cx'
 
 # reads “X” clipboard
-BUFFER="$(xclip -out -selection c)"
+BUFFER="$(xsel --clipboard)"
 
 # copy correct word to keyboard
-python3 corrector.py "${BUFFER}" | tr -d '\n' | xclip -selection c -l 1
+python3 corrector.py "${BUFFER}" | tr -d '\n' | xsel -b -i
 
 # paste correct word
 xvkbd -xsendevent -text '\Cv'
 
 
 # returns back old clipboard value
-echo "${OLD_BUFFER}" | tr -d '\n' | xclip -selection c -l 999
+echo "${OLD_BUFFER}" | tr -d '\n' | xsel -b -i
