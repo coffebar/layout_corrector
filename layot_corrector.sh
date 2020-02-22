@@ -6,41 +6,27 @@
 # xvkbd
 # setxkbmap
 
-# Getting script location directory
-SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-  TARGET="$(readlink "$SOURCE")"
-  if [[ $SOURCE == /* ]]; then
-    SOURCE="$TARGET"
-  else
-    DIR="$( dirname "$SOURCE" )"
-    SOURCE="$DIR/$TARGET" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-  fi
-done
-RDIR="$( dirname "$SOURCE" )"
-DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-
-# Changing current directory to script location
-cd ${DIR}
 
 # saving old clipboard value to variable
 OLD_BUFFER="$(xsel --clipboard)"
 
-# selecting left text with SHIFT + Home
+# selecting left text with SHIFT + Home 
 xvkbd -xsendevent -text "\S\[Home]"
 
-# cut to buffer with CTRL + x
-xvkbd -xsendevent -text '\Cx'
+# and cut to buffer SHIFT+Del
+xvkbd -xsendevent -text '\S\[Delete]'
 
 # reads “X” clipboard
 BUFFER="$(xsel --clipboard)"
 
+# get script location
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 # copy correct word to keyboard
-python3 corrector.py "${BUFFER}" | tr -d '\n' | xsel -b -i
+python3 "$DIR/corrector.py" "${BUFFER}" | tr -d '\n' | xsel -b -i
 
 # paste correct word
-xvkbd -xsendevent -text '\Cv'
+xvkbd -xsendevent -text '\S\[Insert]'
 
-
-# returns back old clipboard value
+# return back old clipboard value
 echo "${OLD_BUFFER}" | tr -d '\n' | xsel -b -i
