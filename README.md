@@ -6,14 +6,16 @@ Script to change keyboard layout for already written line (RU/EN).
 
 Written for Linux as an alternative to [Punto switcher](https://punto.yandex.ru/).
 
-Recommended: config starting 
-
+## How to use
 You need to bind `layot_corrector.sh` 
 to a combination of keys CTRL + ALT + Z
 or just 'Scroll Lock' key or something else you want.
 
+Do not forget to give execute permissions:
+```chmod +x layout_corrector/layot_corrector.sh```
 
-REQUIRES:
+
+### Requires
     
     - python3
     - xsel
