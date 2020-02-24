@@ -6,12 +6,12 @@ from corrector import correct
 __author__ = 'Odarchenko N.D.'
 
 
-if __name__ == '__main__':
-    print('Keyboard layout corrector. \r\nTesting system environment...')
+def check_env():
     commands = (
-        ("xsel --clear", 'You need to install xsel'),
-        ('setxkbmap > /dev/null', 'You need to install setxkbmap'),
-        ("xvkbd -xsendevent -text '\C'>/dev/null", 'You need to install xvkbd'),
+        ("xsel --version", 'You need to install xsel'),
+        ("xdotool --help", 'You need to install xdotool'),
+        ('xte -help > /dev/null', 'You need to install xautomation'),
+        ("xvkbd -no-sync -no-repeat -xsendevent -text '\C' > /dev/null", 'You need to install xvkbd'),
     )
     try:
         for command, error_text in commands:
@@ -23,7 +23,17 @@ if __name__ == '__main__':
         print("Test failed:\n" + str(e))
         print('!' * 30 + '\n')
         exit(1)
+
+
+if __name__ == '__main__':
+    print('Keyboard layout corrector. \r\nTesting system environment...')
+    check_env()
+
     print('Test example:')
-    test = 'ghbdtn'
-    print('"%s" -> "%s"' % (test, correct(test)))
-    print('Test passed.')
+    test_str = 'ghbdtn'
+    corrected_str = correct(test_str)
+
+    print('"%s" -> "%s"' % (test_str, corrected_str))
+
+    if corrected_str == 'привет':
+        print('Test passed.')

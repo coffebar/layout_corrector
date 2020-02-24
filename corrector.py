@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-from subprocess import call
 
 __author__ = 'Odarchenko N.D.'
 
@@ -20,10 +19,8 @@ def has_chars(s, chars_list):
 def correct(bad_str):
     if has_chars(bad_str, ru):
         trans_tab = str.maketrans(ru, ru_to_en)
-        call(['setxkbmap', '-layout', 'us,ru'])
     else:
         trans_tab = str.maketrans(ru_to_en, ru)
-        call(['setxkbmap', '-layout', 'ru,us'])
     return bad_str.translate(trans_tab)
 
 

@@ -20,11 +20,12 @@ Do not forget to give execute permissions:
     - python3
     - xsel
     - xvkbd
-    - setxkbmap
+    - xautomation
+    - xdotool
     
 Install requirements on Ubuntu\Mint:
 ```
-sudo apt install python3 xsel xvkbd x11-xkb-utils
+sudo apt install python3 xdotool xsel xvkbd xautomation
 ```
 
 You can use command `python3 layout_corrector/test.py` to check that all dependencies are satisfied.
