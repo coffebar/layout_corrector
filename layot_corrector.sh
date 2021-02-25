@@ -7,7 +7,8 @@ xvkbd -xsendevent -text "\S\[Home]"
 xdotool key --window "$(xdotool getactivewindow)" ctrl+x
 
 # get selection and remove it from clipboard
-BUFFER="$( xsel -cb )"
+BUFFER="$( xsel -b )"
+xsel -cb
 
 # get script location
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
