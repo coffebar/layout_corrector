@@ -3,8 +3,6 @@
 from subprocess import call
 from corrector import correct
 
-__author__ = 'Odarchenko N.D.'
-
 
 def check_env():
     commands = (
