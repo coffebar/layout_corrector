@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 import sys
 
-__author__ = 'Odarchenko N.D.'
-
 ru = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 ru_to_en = 'f,dult`;pbqrkvyjghcnea[wxio]sm\'.zF<DULT~:PBQRKVYJGHCNEA{WXIO}SM">Z'
 
