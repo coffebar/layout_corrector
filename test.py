@@ -8,8 +8,6 @@ def check_env():
     commands = (
         ("xsel --version", 'You need to install xsel'),
         ("xdotool --help", 'You need to install xdotool'),
-        ('xte -help > /dev/null', 'You need to install xautomation'),
-        ("xvkbd -no-sync -no-repeat -xsendevent -text '\C' > /dev/null", 'You need to install xvkbd'),
     )
     try:
         for command, error_text in commands:
