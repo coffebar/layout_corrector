@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # selecting left text with SHIFT + Home
-xvkbd -xsendevent -text "\S\[Home]"
+xdotool key shift+Home
 
 # cut
-xdotool key --window "$(xdotool getactivewindow)" ctrl+x
+xdotool key ctrl+x
 
 # get selection and remove it from clipboard
 BUFFER="$( xsel -b )"
@@ -21,4 +21,4 @@ xdotool type --clearmodifiers "$CORRECT"
 
 # switch to other layout with Alt+Shift
 # your can change this shortcut
-xte 'keydown Alt_L' 'keydown Shift_L' 'keyup Shift_L' 'keyup Alt_L'
+xdotool key alt+shift
